@@ -1,0 +1,60 @@
+Raspberry pi 2
+burn jessie lite
+	Expand filesystem
+	change network name
+	Activate ssh on pi:
+		sudo touch /boot/ssh
+	update via apt-get: 	
+		sudo apt-get update
+	  	sudo apt-get upgrade
+	install python3 pip:
+		sudo apt-get install python3-pip
+	install alsa & jack:
+		sudo apt-get install libasound2-dev libjack-dev
+	install python rtmidi:
+		pip3 install --user python-rtmidi
+	prevent HDMI from sleeping:
+		editar /etc/rc.local y agregar:
+			setterm -blank 0 -powerdown 0
+	conectar a red inalámbrica:
+				sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+					network={
+						ssid="red"
+						psk="contraseña"
+					}
+
+	reboot
+	run program at startup:
+		nano .bashrc
+			add line:
+				./multimidi.py
+
+Raspberry pi 3
+Partir de Raspbian stretch lite
+	raspi-config:	
+		change network name
+		change password
+		boot to text console autologin
+		set country (to enable WiFi)
+		enable ssh access
+
+	conectar a red inalámbrica:
+		sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+			network={
+				ssid="red"
+				psk="contraseña"
+			}
+	actualizar: 
+		sudo apt-get update
+		sudo apt-get upgrade
+	prevent HDMI from sleeping:
+		editar /etc/rc.local y agregar:
+			setterm -blank 0 -powerdown 0
+	install rtmidi dependencies:
+		sudo apt-get install alsa-base python3-pip libasound2-dev libjack-dev
+	install rtmidi:
+		pip3 install --user python-rtmidi
+	run program at startup:
+		nano .bashrc
+			add line:
+				./multimidi.py
