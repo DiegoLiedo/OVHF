@@ -32,7 +32,7 @@ double notes[128] = {8.1757989156,8.661957218,9.1770239974,9.7227182413,10.30086
 char * msg[6];
 char incomingPacket[12];
 int onOff = 80; //90 on, 80 off
-int note, velocity;
+int note, lastNote, velocity;
 
 void setup() {
 #ifdef debug
