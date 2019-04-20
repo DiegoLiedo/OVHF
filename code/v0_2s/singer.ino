@@ -34,6 +34,7 @@ void udpRead() {
 
     }
 //    if (i=0)onOff=atoi(pch);
+     
     if (i=1)note=atoi(pch);
     if (i=2)velocity=atoi(pch);
     }
@@ -47,8 +48,9 @@ void udpRead() {
     //onOff = incomingPacket[1];
     //note = incomingPacket[4];
     //velocity = incomingPacket[7];
+    if (onOff == 0x90) lastNote=note;
     if (onOff == 144)ledcWriteTone(0, notes[note]);
-    if (onOff == 128)ledcWriteTone(0, 0);
+    if (onOff == 128 && note==lastNote)ledcWriteTone(0, 0);
     if (len > 0)
     {
       incomingPacket[len] = 0;
